@@ -77,8 +77,7 @@ class DB
      */
     public function getPrispevky()
     {
-        $sql = "SELECT prispevok.img_path as img_path, prispevok.nazov as nazov, prispevok.popis as popis,prispevok.datum as datum,prispevok.adresa as adresa,
-              mesto.nazov as mesto,prispevok.kontakt as kontakt FROM `prispevok` INNER JOIN mesto on mesto_idmesto=mesto.idmesto order by prispevok.datum ";
+        $sql = "SELECT img_path, nazov, popis, datum, adresa, mesto, kontakt FROM `prispevok`";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);

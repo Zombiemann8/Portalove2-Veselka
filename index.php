@@ -1,14 +1,10 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
-
-<!-- 
-
-Highway Template
-
-https://templatemo.com/tm-520-highway
-
--->
         <?php include_once("header.php");?>
 
     </head>
@@ -16,15 +12,28 @@ https://templatemo.com/tm-520-highway
 <body>
 
 
-
     <nav>
         <div class="logo">
             <a href="index.php">BEACH<em>SITE</em></a>
         </div>
+        <?php
+        if (isset($_SESSION['loggedin'])) // ak mam session, tj.som logged in
+        {
+        ?>
+        <div class ="logo">
+            <a>Prihlásený ako: <em><?=$_SESSION['name']?></em></a>
+        </div>
+        <?php
+        }
+        ?>
         <div class="menu-icon">
         <span></span>
+
       </div>
+
     </nav>
+
+
 
     <div id="video-container">
         <div class="video-overlay"></div>
