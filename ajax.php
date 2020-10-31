@@ -5,6 +5,9 @@ use classes\DB;
 
 $db = new DB("localhost", "root", "", "portalove", 3306);
 
+//if(!isset($_GET['show']))
+ //       return;
+
 if($_GET['show'] == 1) {
     $prispevky = $db->getPrispevky();
 
@@ -22,7 +25,7 @@ if($_GET['show'] == 1) {
 
                                 <p> <?php echo $prispevok['popis'] ;?>
                                     <br>
-                                    <b>Dátum:</b> <?php echo $prispevok['datum'] ;?>
+                                    <b>Dátum:</b> <?php echo date('Y-m-d',strtotime($prispevok['datum'])) ;?>
                                     <br>
                                 <b>Kontakt:</b> <?php echo $prispevok['kontakt'] ;?>
 
@@ -39,7 +42,19 @@ if($_GET['show'] == 1) {
         <?php
     }
 }
+else if($_POST['show'] == 2) {   // delete prispevku
+    function_alert("Vymazávam príspevok.");
+    $db->deletePrispevok($_POST['idPrispevok']);
+}
+
 else {
     echo "No data found";
 }
+
 die();
+
+function function_alert($message) {
+
+    // Display the alert box
+    echo "<script>alert('$message');</script>";
+}

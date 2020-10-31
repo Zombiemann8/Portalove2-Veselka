@@ -77,9 +77,24 @@ class DB
      */
     public function getPrispevky()
     {
-        $sql = "SELECT img_path, nazov, popis, datum, adresa, mesto, kontakt FROM `prispevok`";
+        $sql = "SELECT img_path, nazov, popis, datum, adresa, mesto, kontakt FROM `prispevok` WHERE datum > CURRENT_DATE";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function  getMojePrispevky($id)
+    {
+        $sql = "SELECT idprispevok as id, img_path, nazov, popis, datum, adresa, mesto, kontakt FROM `prispevok` WHERE user_iduser='" . $id . "'";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function deletePrispevok($id_prispevku)
+    {
+        $sql = "DELETE FROM prispevok WHERE idprispevok='" . $id_prispevku . "'";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
     }
 }

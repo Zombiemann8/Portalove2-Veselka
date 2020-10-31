@@ -1,8 +1,9 @@
 
 
 $(document).ready(function () {
+
   $('#show').click(function () {
-    console.log("click");
+    console.log("show_prispevky");
     $.ajax({
       method: "GET",
       url: "ajax.php",
@@ -10,12 +11,35 @@ $(document).ready(function () {
         show: 1
       },
       success: function (result) {
-       // console.log(result);
+        // console.log(result);
         $('#test').html(result).show();
       }
     });
   });
+
+  $(document).on('click', '#delete', function(){
+    var id = $(this).parent().attr("id");
+
+    console.log("delete novy");
+    $.ajax({
+      method: "POST",
+      url: "ajax.php",
+      data: {
+        idPrispevok: id,
+        show: 2,
+
+      },
+      success: function (result) {
+        //console.log(result);
+        //$('#prispevky').html(result).show();
+      }
+    });
+  });
+
 });
+
+
+
 
 jQuery(document).ready(function($) {
 
