@@ -8,6 +8,12 @@
 
 </head>
 <body>
+<?php
+if (isset($_SESSION['loggedin'])) // ak mam session, tj.som logged in nepotrebujem sa dostat do registru
+{
+    header( "refresh:0;url=http://localhost/portalove2/index.php" );
+}
+?>
 
 <nav>
     <div class="logo">

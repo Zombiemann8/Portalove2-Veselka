@@ -11,6 +11,12 @@ $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
 $DATABASE_NAME = 'portalove';
+
+if (!isset($_SESSION['loggedin'])) // nepovoleny pristup prepisom url
+{
+    header("refresh:0;url=http://localhost/portalove2/index.php");
+}
+
 // Try and connect using the info above.
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 if ( mysqli_connect_errno() ) {
@@ -86,7 +92,6 @@ if (!empty($_POST)) {
     $nazov = ($_POST['nazov']);
     $popis = ($_POST['popis']);
     $datum = ($_POST['datum']);
-    $mesto = ($_POST['mesto']);
     $kontakt = ($_POST['kontakt']);
     $img_path = htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]));
     $mesto = ($_POST['mesto']);

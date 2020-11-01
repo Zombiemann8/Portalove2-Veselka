@@ -56,9 +56,7 @@ use classes\DB;
                     <div class="col-md-4 col-sm-6">
                         <div class="portfolio-item">
                             <div class="thumb" id="<?php echo $prispevok['id'] ;?>">
-                                <input type="hidden" >
-
-                                <button type="submit" style="position: absolute;top:0;left: 0;background-color: antiquewhite;width: 40px;height: 40px;"><img src="img/edit.png" alt=""></button>
+                                <button type="submit" id="edit" style="position: absolute;top:0;left: 0;background-color: antiquewhite;width: 40px;height: 40px;"><img src="img/edit.png" alt=""></button>
                                 <button type="submit" onclick=location=URL id="delete" style="position: absolute;top:0;right: 0;background-color: antiquewhite;width: 40px;height: 40px;"><img src="img/delete.png" alt=""></button>
                                 <a href="img/<?php echo $prispevok['img_path'] ;?>" data-lightbox="image-1"><div class="hover-effect">
                                         <div class="hover-content">

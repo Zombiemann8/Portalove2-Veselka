@@ -11,30 +11,66 @@ $(document).ready(function () {
         show: 1
       },
       success: function (result) {
-        // console.log(result);
+        console.log("zobrazujem prispevky");
         $('#test').html(result).show();
       }
     });
   });
 
+
+  $(document).on('click', '#edit', function(){
+    var id = $(this).parent().attr("id");
+    console.log("edit");
+    console.log(id);
+
+    $.ajax({
+      method: "POST",
+      url: "ajax.php",
+      data: {
+        idPrispevok: id,
+        show: 3,
+
+      },
+
+      success: function (result) {
+        $('#variables').html(result).show();
+
+        var modBtn  = $('#modBtn'),
+            modal   = $('#modal'),
+            close   = modal.find('.close-btn img'),
+            modContent = modal.find('.modal-content');
+          modal.css('display', 'block');
+          modContent.removeClass('modal-animated-out').addClass('modal-animated-in');
+
+        //console.log(result);
+      }
+    });
+
+
+  });
+
   $(document).on('click', '#delete', function(){
     var id = $(this).parent().attr("id");
 
-    console.log("delete novy");
+    console.log("delete");
     $.ajax({
       method: "POST",
       url: "ajax.php",
       data: {
         idPrispevok: id,
         show: 2,
-
       },
+
       success: function (result) {
-        //console.log(result);
+        console.log("uspesne vymazane");
         //$('#prispevky').html(result).show();
       }
     });
   });
+
+
+
+
 
 });
 

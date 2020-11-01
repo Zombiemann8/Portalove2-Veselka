@@ -93,8 +93,18 @@ class DB
 
     public function deletePrispevok($id_prispevku)
     {
+        /*
         $sql = "DELETE FROM prispevok WHERE idprispevok='" . $id_prispevku . "'";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
+        */
+    }
+
+    public function getEditovanyPrispevok($id_prispevku)
+    {
+        $sql = "SELECT * FROM prispevok WHERE idprispevok='" . $id_prispevku . "'";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 }

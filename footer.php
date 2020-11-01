@@ -26,13 +26,13 @@ if (isset($_SESSION['loggedin'])) // ak mam session, tj.som logged in
     <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-            <h3 class="header-title">Say hello to <em>Highway</em></h3>
+            <h3 class="header-title">Váš <em>Príspevok</em></h3>
             <div class="close-btn"><img src="img/close_contact.png" alt=""></div>
         </div>
         <!-- Modal Body -->
 
         <div class="modal-body">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-6 col-md-offset-3" id = "variables">
                 <form id="createDetails" action="upload.php" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-12"> <!--nazov-->
