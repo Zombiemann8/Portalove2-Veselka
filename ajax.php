@@ -3,7 +3,7 @@ include_once("classes/DB.php");
 
 use classes\DB;
 
-$db = new DB("localhost", "root", "", "portalove", 3306);
+$db = new DB("localhost", "root", "", "portalove2", 3306);
 
 
 if (isset($_SESSION['loggedin'])) // ak mam session, tj.som logged in nepotrebujem login
@@ -52,20 +52,27 @@ else if($_POST['show'] == 2) {   // delete prispevku
     function_alert("Vymazávam príspevok.");
     $db->deletePrispevok($_POST['idPrispevok']);
 } // delete prispevku
+
 else if($_POST['show'] == 3) {   // nacitanie editu prispevku
     $prispevok = $db->getEditovanyPrispevok($_POST['idPrispevok']);
     ?>
-    <form id="editDetails" action="edit.php" method="post" enctype="multipart/form-data">
+    <form  action="edit.php" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" id="img_path" name="img_path" value="<?php echo $prispevok['img_path'] ;?>">
+
         <div class="row">
                 <div class="col-md-12"> <!--nazov-->
                     <fieldset>
-                        <input name="nazov" type="text" class="form-control" id="nazov" placeholder="Nazov turnaju..."value="<?php echo $prispevok['nazov'] ;?>" required="">
+                        <input name="nazov" type="text" class="form-control" id="nazov" placeholder="Nazov turnaju..."value="<?php echo $prispevok['nazov'];?>" required="">
                     </fieldset>
+
                 </div>
+
                 <div class="col-md-12"> <!--kontakt-->
                     <fieldset>
                         <input name="kontakt" type="email" class="form-control" id="kontakt" placeholder="Kontaktný mail..." value="<?php echo $prispevok['kontakt'] ;?>"required="">
                     </fieldset>
+
                 </div>
                 <div class="col-md-12"> <!--datum-->
                     <fieldset>
@@ -86,13 +93,12 @@ else if($_POST['show'] == 3) {   // nacitanie editu prispevku
                 </div>
                 <div class="col-md-12"> <!--obrazok-->
                     <fieldset>
-                        Select image to upload: <input type="file" name="fileToUpload" id="fileToUpload"style="color: transparent">
+                        Select image to upload: <input type="file" name="fileToUpload" id="fileToUpload">
                     </fieldset>
                 </div>
-            <img src="img/<?php echo $prispevok['img_path'] ;?>"width="60px" height="60px">
-                                <br>
-                            YOUR UPLOADED FILE
-
+                            <img src="img/<?php echo $prispevok['img_path'] ;?>"width="60px" height="60px">
+                                                          <br>
+                                                YOUR UPLOADED FILE
                 <div class="col-md-12"> <!--popis-->
                     <fieldset>
                         <textarea name="popis" rows="6" class="form-control" id="popis" placeholder="Popis sem..." required=""><?php echo $prispevok['popis'] ;?></textarea>
@@ -100,10 +106,12 @@ else if($_POST['show'] == 3) {   // nacitanie editu prispevku
                 </div>
                 <div class="col-md-12">
                     <fieldset>
-                        <button type="submit" id="uprav" class="btn">Uprav príspevok</button>
+                        <button type="submit" id="uprav" name="submit" value="<?php echo $_POST['idPrispevok'] ?>" class="btn">Uprav príspevok</button>
                     </fieldset>
                 </div>
         </div>
+
+
     </form>
 
     <?php

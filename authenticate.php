@@ -4,7 +4,7 @@ session_start();
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
-$DATABASE_NAME = 'portalove';
+$DATABASE_NAME = 'portalove2';
 // Try and connect using the info above.
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 
@@ -45,6 +45,7 @@ if ( mysqli_connect_errno() ) {
         $_SESSION['loggedin'] = TRUE;
         $_SESSION['name'] = $_POST['username'];
         $_SESSION['id'] = $id;
+        $_SESSION['id_Prispevok'] = "-1";
 
         function_alert("Succesfully logged in, Wellcome ". $_SESSION['name']);
         header( "refresh:0;url=http://localhost/portalove2/index.php" );

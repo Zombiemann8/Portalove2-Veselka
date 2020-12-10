@@ -77,7 +77,8 @@ class DB
      */
     public function getPrispevky()
     {
-        $sql = "SELECT img_path, nazov, popis, datum, adresa, mesto, kontakt FROM `prispevok` WHERE datum > CURRENT_DATE";
+        //$sql = "SELECT img_path, nazov, popis, datum, adresa, mesto, kontakt FROM `prispevok` WHERE datum > CURRENT_DATE";
+        $sql = "SELECT img_path, nazov, popis, datum, adresa, mesto, kontakt FROM `prispevok`";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -93,11 +94,11 @@ class DB
 
     public function deletePrispevok($id_prispevku)
     {
-        /*
+
         $sql = "DELETE FROM prispevok WHERE idprispevok='" . $id_prispevku . "'";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
-        */
+
     }
 
     public function getEditovanyPrispevok($id_prispevku)
@@ -106,5 +107,17 @@ class DB
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function addPrispevok($nazov,$popis,$datum,$adresa,$id,$kontakt,$img_path,$mesto)
+    {
+        $stmt = $this->prepare('INSERT INTO prispevok (idprispevok, nazov, popis, datum, adresa, user_iduser, m, kontakt, img_path, mesto) VALUES (NULL, ?, ?, ?, ?, ?, \'1\', ?, ?, ?)');
+        $stmt->bind_param("ssssisss", $nazov, $popis, $datum, $adresa, $id, $kontakt,$img_path,$mesto);
+        $stmt->execute();
+    }
+    public function editPrispevok($nazov,$popis,$datum,$adresa,$id,$kontakt,$img_path,$mesto)
+    {
+        $stmt = $this->prepare('UPDATE prispevok SET nazov = ?, popis = ?, datum = ?, adresa = ?, kontakt = ?, img_path = ?, mesto = ? WHERE id = ?');
+        $stmt->execute([$nazov, $popis, $datum, $adresa, $kontakt, $img_path,$mesto, $id]);
     }
 }

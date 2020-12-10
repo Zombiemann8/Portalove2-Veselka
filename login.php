@@ -35,11 +35,9 @@ if (isset($_SESSION['loggedin'])) // ak mam session, tj.som logged in nepotrebuj
                     <h3>Login</h3>
                     <form action="authenticate.php" method="post">
                         <label for="username">
-                            <i class="fas fa-user"></i>
                         </label>
                         <input type="text" name="username" placeholder="Username" id="username" required>
                         <label for="password">
-                            <i class="fas fa-lock"></i>
                         </label>
                         <input type="password" name="password" placeholder="Password" id="password" required>
                         <input type="submit" value="Login">

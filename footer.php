@@ -64,7 +64,7 @@ if (isset($_SESSION['loggedin'])) // ak mam session, tj.som logged in
                         </div>
                         <div class="col-md-12"> <!--obrazok-->
                             <fieldset>
-                                Select image to upload: <input type="file" name="fileToUpload" id="fileToUpload">
+                                Select image to upload: <input type="file" name="fileToUpload" id="fileToUpload"required="">
                             </fieldset>
                         </div>
                         <div class="col-md-12"> <!--popis-->
@@ -148,3 +148,6 @@ else {
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
 
+function preview() {
+thumb.src=URL.createObjectURL(event.target.files[0]);
+}

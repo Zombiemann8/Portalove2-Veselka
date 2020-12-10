@@ -47,7 +47,7 @@ use classes\DB;
             <center><h1 style="color: white;font-size: large;align-content: center">Vaše Príspevky.</h1></center>
             <div class="row" id="prispevky">
                 <?php
-                $db = new DB("localhost", "root", "", "portalove", 3306);
+                $db =   new DB("localhost", "root", "", "portalove2", 3306);
                 $prispevky = $db->getMojePrispevky($_SESSION['id']);
 
                 foreach ($prispevky as $key => $prispevok) {
@@ -86,13 +86,6 @@ use classes\DB;
 
 
 
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="load-more-button">
-                        <a href="#">Load More</a>
-                    </div>
-                </div>
             </div>
             
         </div>
