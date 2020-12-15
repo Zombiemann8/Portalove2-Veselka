@@ -10,8 +10,10 @@ if (isset($_SESSION['loggedin'])) // ak mam session, tj.som logged in nepotrebuj
 {
     header("refresh:0;url=http://localhost/portalove2/index.php");
 }
+if(!isset($_POST['show']))
+    $_POST['show'] = null;
 if(!isset($_GET['show']))
-    header("refresh:0;url=http://localhost/portalove2/index.php");
+    $_GET['show'] = null;
 
 
 if($_GET['show'] == 1) {
