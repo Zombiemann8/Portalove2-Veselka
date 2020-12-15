@@ -18,6 +18,7 @@ $check="";
 $img_path="";
 
 
+
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
